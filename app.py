@@ -85,19 +85,19 @@ y = df_historical["cases"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Initialize the SVR model with a linear kernel
-model = SVR(kernel='linear')
+mod = SVR(kernel='linear')
 
 # Train the model
-model.fit(X_train, y_train)
+mod.fit(X_train, y_train)
 
 # Predict next day's cases (e.g., Day 31)
 next_day = np.array([[31]])
-predicted_cases = model.predict(next_day)
+predicted_cases = mod.predict(next_day)
 
 # Output the prediction
 print(f"Predicted cases for Day 31: {int(predicted_cases[0])}")
 if st.button("Predict"):
     prediction = model.predict([[day_input]])
     st.write(f"Predicted cases for day {day_input}: {int(prediction[0])}")
-    prediction = SVR.predict([[day_input]])
+    prediction = mod.predict([[day_input]])
     st.write(f"Predicted cases for day {day_input}: {int(prediction[0])}")
