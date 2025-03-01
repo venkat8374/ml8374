@@ -75,6 +75,7 @@ day_input = st.number_input("Enter day number (e.g., 31 for prediction)", min_va
 
 
 from sklearn.svm import SVC
+from sklearn.svm import SVR
 from sklearn.metrics import classification_report, accuracy_score
 
 X = df_historical[["day"]]
