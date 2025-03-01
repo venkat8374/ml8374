@@ -73,8 +73,22 @@ st.write("Predicting COVID-19 cases for the next day based on historical data.")
 # User Input
 day_input = st.number_input("Enter day number (e.g., 31 for prediction)", min_value=1, max_value=100)
 
+
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, accuracy_score
+
+iris = covid_data.load_iris()
+X = iris.data
+y = iris.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+svm = SVC(kernel='linear')
+svm.fit(X_train, y_train)
+y_pred = svm.predict(X_test)
+print("Accuracy: ", accuracy_score(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
 if st.button("Predict"):
     prediction = model.predict([[day_input]])
     st.write(f"Predicted cases for day {day_input}: {int(prediction[0])}")
-
-
+    prediction = svm.predict([[day_input]])
+    st.write(f"Predicted cases for day {day_input}: {int(prediction[0])}")
