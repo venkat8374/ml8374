@@ -99,5 +99,5 @@ print(f"Predicted cases for Day 31: {int(predicted_cases[0])}")
 if st.button("Predict"):
     prediction = model.predict([[day_input]])
     st.write(f"Predicted cases for day {day_input}: {int(prediction[0])}")
-    prediction = svm.predict([[day_input]])
+    prediction = SVR.predict([[day_input]])
     st.write(f"Predicted cases for day {day_input}: {int(prediction[0])}")
